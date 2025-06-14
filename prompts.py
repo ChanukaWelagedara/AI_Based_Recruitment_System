@@ -24,17 +24,24 @@ Candidate Summary:
 """
 
 MCQ_INTERVIEW_PROMPT = """
-Based on the following candidate CV summary, generate 25 MCQ-style interview questions with 4 answer choices each.
-Clearly indicate the correct answer.
+You are a technical interviewer.
 
-Return the result as a JSON list with fields:
-- question
-- options (list of 4)
-- correct (index starting from 0)
+Generate exactly 25 **technical multiple-choice questions** (MCQs) based ONLY on the technologies, programming languages, tools, and frameworks mentioned in the following CV summary.
+
+Each question should test the candidate's knowledge of these tools and skills — e.g., if the CV mentions React, ask a React question; if it mentions AWS or Terraform, ask about those.
+
+Return ONLY a valid JSON list where each item has:
+- question (string)
+- options (list of 4 strings)
+- correct (integer, 0–3)
+
+DO NOT include explanations or any text outside the JSON.
 
 CV Summary:
 {cv_summary}
 """
+
+
 
 INTERVIEW_ANALYSIS_PROMPT = """
 You are an interview evaluator.
